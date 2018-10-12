@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="constant" class="constant.Constant"/>
+	
+	<bean id="configurationDao" class="dao.impl.ConfigurationDaoImp">
+		<property name="constants" ref="constant"/>
+	</bean>
+	
+	<bean id="configurationService" class="service.impl.ConfigurationService">
+		<property name="configurationDao" ref="configurationDao"/>
+	</bean>
+	
+	<bean id="validationService" class="service.impl.ValidationImpl">
+		<property name="configurationService" ref="configurationService"/>
+	</bean>
+	
+	
+	
+</beans>
